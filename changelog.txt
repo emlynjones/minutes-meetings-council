@@ -1,0 +1,17 @@
+Changes to Plugin:
+
+Version 0.0.1
+
+* Added Custom Post Type for "Meetings"
+
+Version 0.0.2
+
+* Added Meta Boxes for:
+		- Meeting Date
+		- Meeting Agenda
+
+
+* Added Ability to upload PDF's for meetings.
+
+
+Version 0.0.3
