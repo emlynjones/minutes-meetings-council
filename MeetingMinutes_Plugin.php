@@ -93,25 +93,24 @@ function mminutes_init() {
 		$meeting_minutes = get_post_meta($post->ID, 'mminutes-minutes', true);
 				
 		//Echo the HTML code to show form
-		echo '<p>Date of meeting (dd/mm/yyyy):   <input type = "date" name = "mminutes-meeting-date" value ="'.esc_attr($meeting_date).'"></input></p>';
+		echo '<p>Date of meeting (dd/mm/yyyy):</p><p><input type = "date" name = "mminutes-meeting-date" value ="'.esc_attr($meeting_date).'"></input></p><p><em>*This is required</em></p>';
 		
-		echo '<p>Meeting Agenda (pdf): <input type = "file" name = "mminutes-agenda">'.'</input></p>';
-		
-		echo '<p>Meeting Minutes (pdf): <input type = "file" name = "mminutes-minutes"></input></p>';
 		
 		if ($meeting_agenda){
-			echo '<p><a href = "'.esc_attr($meeting_agenda).'">View Document</a></p>';
+			echo '<p><a href = "'.esc_attr($meeting_agenda).'"target = "_blank">Preview Agenda</a></p>';
 			//echo ' Delete Button to go here.';
 			}
-		else{
-			echo '<p>Sorry, no document is uploaded yet.</p>';
+		elseif(empty($meeting_agenda)){
+			echo '<p>Meeting Agenda (pdf): <input type = "file" name = "mminutes-agenda">'.'</input></p>';
+			echo '<p>Sorry, no Agenda is uploaded yet.</p>';
 		}
 		if ($meeting_minutes){	
-			echo '<p><a href = "'.esc_attr($meeting_minutes).'">View Document</a></p>';
+			echo '<p><a href = "'.esc_attr($meeting_minutes).'"target = "_blank">Preview Minutes</a></p>';
 			//echo ' Delete Button to go here.';
 			}
-		else{
-			echo '<p>Sorry, no document is uploaded yet.</p>';
+		elseif(empty($meeting_minutes)){
+			echo '<p>Meeting Minutes (pdf): <input type = "file" name = "mminutes-minutes"></input></p>';
+			echo '<p>Sorry, no Minutes have been uploaded yet.</p>';
 		}
 		echo '<p>Meeting Summary:</p>';
 		echo '<p><textarea name = "mminutes-meeting-summary" style = "width: 100%; height: 150px;">'.esc_attr($meeting_summ).'</textarea>';
@@ -121,7 +120,7 @@ function mminutes_init() {
 	add_action('save_post', 'mminutes_save_meta_box');
 	
 	function mminutes_save_meta_box($post_id){
-		if (get_post_type($post_id) == 'meetings' && isset($_POST['mminutes-meeting-date']) && isset($_POST['mminutes-meeting-summary'])){
+		if (get_post_type($post_id) == 'meetings' && isset($_POST['mminutes-meeting-date']) ){
 		
 			//Skip saving the data if it's Auto Saving
 			if(defined('DOING_AUTOSAVE') && 'DOING_AUTOSAVE')
@@ -131,11 +130,7 @@ function mminutes_init() {
 			if(isset($_POST['m-minutes-nonce']) && wp_verify_nonce($_POST['m-minutes-nonce'], 'm_minutes_save_meta_box') && check_admin_referer('m_minutes_save_meta_box', 'm-minutes-nonce')){
 				//CHECKS GO HERE AS AN IF STATEMENT
 				
-				
-				
-				
-				
-				
+								
 				//Update the post meta
 				
 				$meeting_date_raw = trim($_POST['mminutes-meeting-date']);
@@ -175,8 +170,12 @@ function mminutes_init() {
 		  
 					}
 					
-					elseif(!$_POST['mminutes-agenda']){
+					elseif(empty($_FILES['mminutes-agenda']['name'])){
 						return;
+						//$args = array(
+						//'back_link' => 'true',
+						//);
+						wp_die("Error message that there is no agenda in the _FILES.", null, $args);
 					}
 					
 					else {
@@ -199,8 +198,12 @@ function mminutes_init() {
 						echo $upload_error_minutes;
 					}
 					
-					elseif(!$_POST['mminutes-minutes']){
+					elseif(empty($_FILES['mminutes-minutes']['name'])){
 						return;
+						//$args = array(
+						//'back_link' => 'true',
+						//);
+					wp_die("Error message that there is no minutes in the _FILES.", null, $args);
 					}
 					
 					else {
@@ -209,7 +212,7 @@ function mminutes_init() {
 						);				
 					wp_die("The file type that you've uploaded for the minutes is not a PDF.", null, $args);  
 					}
-				 // end if  
+				 
 				
 			
 			}

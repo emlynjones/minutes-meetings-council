@@ -15,3 +15,12 @@ Version 0.0.2
 
 
 Version 0.0.3
+* Pdf's open in new window now if clicked from Edit Meeting.
+
+* Pdf's open in new window now if clicked from shortcode.
+
+* Cleaned up UI for Data entry ( Date on separate line)
+
+* Clarified text in links etc (e.g. View Document now Preview Agenda/Meeting
+
+*
