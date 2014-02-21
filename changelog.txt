@@ -23,4 +23,7 @@ Version 0.0.3
 
 * Clarified text in links etc (e.g. View Document now Preview Agenda/Meeting
 
+
+Version 0.0.4
+
 *

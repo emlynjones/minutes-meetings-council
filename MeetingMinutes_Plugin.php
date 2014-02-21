@@ -3,7 +3,7 @@
 Plugin Name: Meeting Minutes Plugin
 Plugin URI: http://www.cambrianweb.com
 Description: Plugin to allow small councils/commitees to publish their meeting minutes online.
-Version: 0.0.3
+Version: 0.0.4
 
 Author: Emlyn Jones
 Author URI: http://www.emlynjones.co.uk
@@ -98,8 +98,23 @@ function mminutes_init() {
 		
 		if ($meeting_agenda){
 			echo '<p><a href = "'.esc_attr($meeting_agenda).'"target = "_blank">Preview Agenda</a></p>';
-			//echo ' Delete Button to go here.';
+			
+			//DELETE BUTTON STUFF HERE
+			
+			<input type="hidden" name="mybox_meta_box_nonce" value="<?php wp_create_nonce(basename(__FILE__));?>" />
+			// using another hidden field within the form
+			if(isset($_POST['action']) && ($_POST['action']=='remove')){
+				//$post_meta_key = $_POST['meta_key'];
+				//$post_meta_value = $_POST['metavalue'];
+				//$postid = $_POST['postid'];
+				//delete_post_meta($post_id, $meta_key, $meta_value);
+				echo '<div id="message" class="updated fade">Post meta deleted.</div>';
 			}
+
+		}
+			
+			
+			
 		elseif(empty($meeting_agenda)){
 			echo '<p>Meeting Agenda (pdf): <input type = "file" name = "mminutes-agenda">'.'</input></p>';
 			echo '<p>Sorry, no Agenda is uploaded yet.</p>';
