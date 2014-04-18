@@ -1,29 +1,9 @@
-Changes to Plugin:
-
-Version 0.0.1
-
-* Added Custom Post Type for "Meetings"
-
-Version 0.0.2
-
-* Added Meta Boxes for:
-		- Meeting Date
-		- Meeting Agenda
-
-
-* Added Ability to upload PDF's for meetings.
-
-
-Version 0.0.3
-* Pdf's open in new window now if clicked from Edit Meeting.
-
-* Pdf's open in new window now if clicked from shortcode.
-
-* Cleaned up UI for Data entry ( Date on separate line)
-
-* Clarified text in links etc (e.g. View Document now Preview Agenda/Meeting
-
-
-Version 0.0.4
-
-*
+Changes to Plugin:
+
+Version 0.0.1
+
+* Added Custom Post Type for "Walks"
+
+Version 0.0.2
+
+* Added Meta Box "OS Map" to "Walks" Custom Post Type
