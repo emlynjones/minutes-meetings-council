@@ -1,9 +1,21 @@
-Changes to Plugin:
-
-Version 0.0.1
-
-* Added Custom Post Type for "Walks"
-
-Version 0.0.2
-
+Changes to Plugin:
+
+
+
+Version 0.0.1
+
+
+
+* Added Custom Post Type for "Walks"
+
+
+
+Version 0.0.2
+
+
+
 * Added Meta Box "OS Map" to "Walks" Custom Post Type
+
+Version 0.1
+
+* Improved i18n of the plugin

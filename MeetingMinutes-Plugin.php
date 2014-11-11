@@ -3,7 +3,7 @@
 Plugin Name: Cofnodion
 Plugin URI: http://www.cambrianweb.com
 Description: Plugin that allows small councils/committees to publish their meeting agendas & minutes online.
-Version: 0.2.0
+Version: 0.1.0
 Text Domain: m-minutes-plugin
 
 Author: Gwe Cambrian Web
@@ -101,33 +101,33 @@ function mminutes_init() {
 		$meeting_minutes = get_post_meta($post->ID, 'mminutes-minutes', true);
 
 		//Echo the HTML code to show form
-		echo '<p>'__('Date of meeting', 'm-minutes-plugin').' '.__('(dd/mm/yyyy)','m-minutes-plugin').':</p><p><input type = "date" name = "mminutes-meeting-date" value ="'.esc_attr($meeting_date).'"></input></p><p><em>*'.__('This is required', 'm-minutes-plugin').'</em></p>';
+		echo '<p>Date of meeting (dd/mm/yyyy):</p><p><input type = "date" name = "mminutes-meeting-date" value ="'.esc_attr($meeting_date).'"></input></p><p><em>*This is required</em></p>';
 
 
 		if($meeting_agenda){
-			echo '<p><a href = "'.esc_attr($meeting_agenda).'"target = "_blank">'.__('Preview Agenda','m-minutes-plugin').'</a></p>';
+			echo '<p><a href = "'.esc_attr($meeting_agenda).'"target = "_blank">Preview Agenda</a></p>';
 
 			//DELETE BUTTON STUFF HERE
 
 		}
 
 		elseif(empty($meeting_agenda)){
-			echo '<p>'.__('Meeting Agenda (pdf)','m-minutes-plugin').': <input type = "file" name = "mminutes-agenda"></input></p>';
-			echo '<p>'.__('Sorry, no Agenda is uploaded yet','m-minutes-plugin').'.</p>';
+			echo '<p>Meeting Agenda (pdf): <input type = "file" name = "mminutes-agenda">'.'</input></p>';
+			echo '<p>Sorry, no Agenda is uploaded yet.</p>';
 		
 		}
 		
 		if($meeting_minutes){
-			echo '<p><a href = "'.esc_attr($meeting_minutes).'"target = "_blank">'.__('Preview Minutes','m-minutes-plugin').'</a></p>';
+			echo '<p><a href = "'.esc_attr($meeting_minutes).'"target = "_blank">Preview Minutes</a></p>';
 			//echo ' Delete Button to go here.';
 		}
 		
 		elseif(empty($meeting_minutes)){
-			echo '<p>'.__('Meeting Minutes (pdf)', 'm-minutes-plugin').': <input type = "file" name = "mminutes-minutes"></input></p>';
-			echo '<p>'.__('Sorry, no Minutes have been uploaded yet.','m-minutes-plugin').'</p>';
+			echo '<p>Meeting Minutes (pdf): <input type = "file" name = "mminutes-minutes"></input></p>';
+			echo '<p>Sorry, no Minutes have been uploaded yet.</p>';
 		}
 		
-		echo '<p>'.__('Meeting Summary','m-minutes-plugin').':</p>';
+		echo '<p>Meeting Summary:</p>';
 		echo '<p><textarea name = "mminutes-meeting-summary" style = "width: 100%; height: 150px;">'.esc_attr($meeting_summ).'</textarea>';
 	};
 
@@ -198,7 +198,7 @@ function mminutes_init() {
 					$args = array(
 							'back_link' => 'true',
 							);
-					wp_die(__("The file type that you've uploaded for the agenda is not a PDF. Click 'Go Back' To return to the previous screen.",'m-minutes-plugin'), null, $args);  
+					wp_die("The file type that you've uploaded for the agenda is not a PDF. Click 'Go Back' To return to the previous screen.", null, $args);  
 					}
 					
 					
@@ -233,7 +233,7 @@ function mminutes_init() {
 					$args = array(
 							'back_link' => 'true',
 							);
-					wp_die(__("The file type that you've uploaded for the minutes is not a PDF. Click 'Go Back' To return to the previous screen.",'m-minutes-plugin'), null, $args);  
+					wp_die("The file type that you've uploaded for the minutes is not a PDF. Click 'Go Back' To return to the previous screen.", null, $args);  
 					} 
 				}
 
@@ -276,21 +276,21 @@ function mminutes_init() {
 				
 				 
 				echo  '<h3>' . get_the_title() . '</h3><p><em>'.$meeting_summ.'</em></p>';
-				echo __('Meeting held on','m-minutes-plugin').': '.$meeting_date;
+				echo 'Meeting held on: '.$meeting_date;
 				
 				if ($meeting_agenda){
-					echo '<a href = "'.$meeting_agenda.'"target = "_blank"><p>'.__('Please click here to download the agenda for this meeting','m-minutes-plugin').'</p></a>';
+					echo '<a href = "'.$meeting_agenda.'"target = "_blank"><p>Please click here to download the agenda for this meeting</p></a>';
 				}
 				else {
-					echo '<p>'.__('Apologies, there is no agenda available for this meeting','m-minutes-plugin').'</p>';
+					echo '<p>Apologies, there is no agenda available for this meeting</p>';
 				}
 				
 				if ($meeting_minutes){
-					echo '<a href = "'.$meeting_minutes.'" target = "_blank"><p>'.__('Please click here to download the minutes for this meeting','m-minutes-plugin').'</p></a>';
+					echo '<a href = "'.$meeting_minutes.'" target = "_blank"><p>Please click here to download the minutes for this meeting</p></a>';
 				}
 				
 				else{
-					echo '<p>'.__('Apologies, there are no minutes available for this meeting','m-minutes-plugin').'</p>';
+					echo '<p>Apologies, there are no minutes available for this meeting</p>';
 				}
 				
 				
@@ -300,7 +300,7 @@ function mminutes_init() {
 		}
 		else {
 			// no posts found
-			echo'<p>'.__('No meetings have been submitted yet. Please call back soon.','m-minutes-plugin').'</p>';
+			echo'<p>No meetings have been submitted yet. Please call back soon.</p>';
 		}
 		
 		/* Restore original Post Data */
